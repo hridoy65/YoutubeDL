@@ -31,7 +31,6 @@ switch ($type) {
     case 'mptrois':
         for ($i=0; $i < sizeof($title); $i++) 
         {
-            echo "mp3";
             if(sizeof($title)>1)
             {
                 if ($format == 'best') 

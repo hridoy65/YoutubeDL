@@ -23,7 +23,7 @@
         </button>
         <h1> Outil de telechargement de vidéos youtube</h1>
         <form action="download.php" method="post" style="margin-top: 15px; margin-left: 15px;">
-            <div id="inputFormRow">
+            <div id="inputFormRowOff">
                 <div class="input-group mb-3">
                     <input type="text" name="title[]" class="form-control m-input" placeholder="Entrer URL" autocomplete="off" required>
                 </div>
@@ -147,7 +147,11 @@
     });
 
     $("#reinit").click(function () {
-        $('#inputFormRow').remove();
+        while($("#inputFormRow").length != 0) 
+        {
+            $('#inputFormRow').remove();
+        }
+        $('.form-control').val('');
     });
 
 
