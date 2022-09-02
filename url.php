@@ -83,11 +83,11 @@
                 </div>
             </div>
             <h4> Renommez si vous le souhaitez le dossier et l'archive qui contiendront vos téléchargements (uniquement si plusieurs liens) </h4>
-            <input type="text" name="rename" class="form-control m-input" placeholder="renommez" autocomplete="off">
+            <input type="text" id="rename" name="rename" class="form-control m-input" placeholder="renommez" autocomplete="off" disabled>
             <fieldset>
                 <legend>Conserver l'ordre des liens lors du téléchargement ? (uniquement si plusieurs liens)</legend>
                 <div>
-                    <input type="checkbox" id="ordre" name="ordre" checked>
+                    <input type="checkbox" id="ordre" name="ordre" checked disabled>
                     <label for="ordre">Coché pour oui, décoché pour non</label>
                 </div>
             </fieldset>
@@ -96,6 +96,9 @@
         <input type="button" name="reinit" id="reinit" value="REINITIALISER" style="margin-left: 15px; background-color: #f90d0d; color: white; border-radius: 6px; padding: 5px; padding-left: 12px; padding-right: 12px; cursor: pointer;">
         <h3 style="margin-left: 2%; margin-top: 50px;"> A noter </h3>
         <div>
+            <p style="width: 80%; margin-left: 2%;"> 
+                Soyez patient, le téléchargement n'est pas instantané. D'abord les fichiers sont téléchargés sur le serveur (période où vous devez attendre) puis ils vous sont transmis.
+            </p>
             <p style="width: 80%; margin-left: 2%;"> 
                 Si une erreur apparaît ou que un ou plusieurs fichiers sont manquants, cela est très probablement dû au fait que le ou les fichiers souhaités n'est ou ne sont pas disponibles dans votre pays, ou bien que le format souhaité n'est pas disponible.
             </p>
@@ -118,11 +121,18 @@
         html += '</div>';
 
         $('#newRow').append(html);
+        $("#rename").prop('disabled', false);
+        $("#ordre").prop('disabled', false);
     });
 
     // remove row
     $(document).on('click', '#removeRow', function () {
         $(this).closest('#inputFormRow').remove();
+        if($("#inputFormRow").length == 0)
+        {
+            $("#rename").prop('disabled', true);
+            $("#ordre").prop('disabled', true);
+        }
     });
 
     $("#mptrois").click(function () 
@@ -152,7 +162,18 @@
             $('#inputFormRow').remove();
         }
         $('.form-control').val('');
+        $("#rename").prop('disabled', true);
+        $("#ordre").prop('disabled', true);
     });
+
+    /*while(1)
+    {
+        if($("#inputFormRow").length == 0) 
+        {
+            $("#rename").prop('disabled', true);
+            $("#ordre").prop('disabled', true);
+        }
+    }*/
 
 
     //Get the button

@@ -246,7 +246,7 @@ switch ($type) {
         break;
 }
 
-if(sizeof($title)>1)
+if(sizeof($title)>1) //crée l'archive où seront stockés les fichiers téléchargés
 {
     if($rename)
     {
@@ -275,7 +275,7 @@ if (file_exists($rest)) { //télécharge le fichier
     header('Content-Length: ' . filesize($rest));
     readfile($rest);
 }
-else
+else //erreur
 {
     echo "erreur, un bug est apparu, pas de chance :/";
 }
@@ -284,7 +284,7 @@ $rest = str_replace(" ", "\ ", $rest); //supprime les espaces car ça fait bugue
 
 exec('yes | rm ' . $rest); //supprime le fichier
 
-if(sizeof($title)>1)
+if(sizeof($title)>1) //supprime l'archive si plusieurs fichiers
 {
     if($rename)
     {
